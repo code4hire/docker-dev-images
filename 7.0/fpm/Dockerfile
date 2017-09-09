@@ -22,11 +22,6 @@ RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
     && echo http://dl-4.alpinelinux.org/alpine/v3.4/community/ >>/etc/apk/repositories \
     && echo http://dl-4.alpinelinux.org/alpine/v3.5/main/ >>/etc/apk/repositories \
     && echo http://dl-4.alpinelinux.org/alpine/v3.5/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.6/main/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.6/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/edge/main/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/edge/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/edge/testing/ >>/etc/apk/repositories \
     && apk update \
     && apk add --no-cache --virtual .build-deps \
             $PHPIZE_DEPS \
@@ -51,6 +46,7 @@ RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
             php7-mcrypt \
             php7-gd \
             php7-exif \
+            php7-pdo \
             php7-pdo_mysql \
             php7-pdo_pgsql \
             php7-curl \
@@ -62,18 +58,17 @@ RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
             php7-xsl \
             php7-pcntl \
             php7-opcache \
+            php7-xdebug \
             php7-calendar \
             php7-ctype \
             php7-gettext \
             php7-iconv \
             php7-json \
             php7-mysqli \
-            php7-pgsql \
-            php7-pdo_pgsql \
             php7-sockets \
-            php7-xdebug \
-            php7-redis \
-    && pecl install imagick-3.4.3 \
+    && docker-php-ext-install zip \
+    && docker-php-ext-enable zip \
+    && pecl install imagick-3.4.3 redis \
     && rm -rf /var/cache/apk/* \
     # Install Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
