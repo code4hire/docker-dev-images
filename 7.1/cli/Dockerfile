@@ -84,7 +84,7 @@ RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
     && echo "alias php-debug='/usr/local/bin/php -dzend_extension=/usr/lib/php7/modules/xdebug.so'" >> ~/.bashrc \
     && echo "alias php-profiler='XDEBUG_CONFIG=\"profiler_enable=1\" /usr/local/bin/php -dzend_extension=/usr/lib/php7/modules/xdebug.so'" >> ~/.bashrc
 
-ADD ./php-configuration/timezone.ini ./php-configuration/memory.ini /usr/local/etc/php/conf.d/
+ADD ./php-configuration/ /usr/local/etc/php/conf.d/
 ADD ./php-xdebug/xdebug.ini ./php-xdebug/xdebug-profiler.ini /usr/local/etc/php/conf.d/
 
 RUN mkdir -p /var/log/xdebug
