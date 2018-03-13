@@ -58,7 +58,6 @@ RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
             php7-bcmath \
             php7-mbstring \
             php7-dom \
-            php7-zip \
             php7-xsl \
             php7-pcntl \
             php7-opcache \
