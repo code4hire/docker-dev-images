@@ -19,14 +19,14 @@ ENV PHPIZE_DEPS \
 RUN apk update \
     && apk add --no-cache --virtual .build-deps \
             $PHPIZE_DEPS \
-    && apk add git \
+    && apk add --no-cache git \
             bash \
             curl \
             icu \
             icu-libs \
             icu-dev \
             gettext-dev \
-            postgresql-dev \
+#            postgresql-dev \
             icu-dev \
             freetype \
             libpng \
@@ -40,22 +40,21 @@ RUN apk update \
             imagemagick \
             imagemagick-dev \
             libtool \
-            pcre-dev
+            pcre-dev \
 # Possible values for ext-name:
 # bcmath bz2 calendar ctype curl dba dom enchant exif fileinfo filter ftp gd gettext
 # gmp hash iconv imap interbase intl json ldap mbstring mysqli oci8 odbc opcache pcntl
 # pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci pdo_odbc pdo_pgsql pdo_sqlite pgsql phar posix
 # pspell readline recode reflection session shmop simplexml snmp soap sockets sodium spl standard
 # sysvmsg sysvsem sysvshm tidy tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl zend_test zip
-
-RUN docker-php-ext-configure gd \
+    && docker-php-ext-configure gd \
     && docker-php-ext-install gd \
     && docker-php-ext-configure exif \
     && docker-php-ext-install exif \
     && docker-php-ext-configure pdo_mysql \
     && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-configure pdo_pgsql \
-    && docker-php-ext-install pdo_pgsql \
+#    && docker-php-ext-configure pdo_pgsql \
+#    && docker-php-ext-install pdo_pgsql \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && docker-php-ext-configure bcmath \
@@ -74,19 +73,15 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install json \
     && docker-php-ext-configure mysqli \
     && docker-php-ext-install mysqli \
-    && docker-php-ext-configure pgsql \
-    && docker-php-ext-install pgsql \
+#    && docker-php-ext-configure pgsql \
+#    && docker-php-ext-install pgsql \
     && docker-php-ext-configure sockets \
     && docker-php-ext-install sockets \
     && yes | pecl install imagick-3.4.3 igbinary-2.0.5 redis-3.1.6 \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable igbinary redis \
-    && rm -rf /var/cache/apk/* \
-    # Install Composer
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    # Install Symfony installer
-    && curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony \
-    && chmod a+x /usr/local/bin/symfony
+    && apk del .build-deps $PHPIZE_DEPS \
+    && rm -rf /var/cache/apk/* /var/lib/apt/lists/* \
 
 ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
 
