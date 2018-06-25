@@ -26,7 +26,7 @@ RUN apk update \
             icu-libs \
             icu-dev \
             gettext-dev \
-#            postgresql-dev \
+            postgresql-dev \
             icu-dev \
             freetype \
             libpng \
@@ -53,8 +53,8 @@ RUN apk update \
     && docker-php-ext-install exif \
     && docker-php-ext-configure pdo_mysql \
     && docker-php-ext-install pdo_mysql \
-#    && docker-php-ext-configure pdo_pgsql \
-#    && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-configure pdo_pgsql \
+    && docker-php-ext-install pdo_pgsql \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && docker-php-ext-configure bcmath \
@@ -73,13 +73,13 @@ RUN apk update \
     && docker-php-ext-install json \
     && docker-php-ext-configure mysqli \
     && docker-php-ext-install mysqli \
-#    && docker-php-ext-configure pgsql \
-#    && docker-php-ext-install pgsql \
+    && docker-php-ext-configure pgsql \
+    && docker-php-ext-install pgsql \
     && docker-php-ext-configure sockets \
     && docker-php-ext-install sockets \
     && yes | pecl install imagick-3.4.3 igbinary-2.0.5 redis-3.1.6 \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable igbinary redis \
     && apk del .build-deps $PHPIZE_DEPS \
-    && rm -rf /var/cache/apk/* /var/lib/apt/lists/* \
+    && rm -rf /var/cache/apk/* /var/lib/apt/lists/*
 ADD ./php-configuration/ /usr/local/etc/php/conf.d/
