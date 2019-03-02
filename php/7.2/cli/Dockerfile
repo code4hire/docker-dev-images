@@ -23,6 +23,7 @@ RUN apk update \
             bash \
             curl \
             icu \
+            nmap \
             icu-libs \
             icu-dev \
             gettext-dev \
