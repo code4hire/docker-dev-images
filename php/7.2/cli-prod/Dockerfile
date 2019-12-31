@@ -82,6 +82,6 @@ RUN apk update \
     && apk del .build-deps $PHPIZE_DEPS \
     && rm -rf /var/cache/apk/* /var/lib/apt/lists/* \
     # Install Composer
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ADD ./php-configuration/ /usr/local/etc/php/conf.d/

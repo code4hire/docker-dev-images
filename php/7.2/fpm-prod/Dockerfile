@@ -81,7 +81,7 @@ RUN apk update \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable igbinary redis \
     && apk del .build-deps $PHPIZE_DEPS \
-    && rm -rf /var/cache/apk/* /var/lib/apt/lists/* \
+    && rm -rf /var/cache/apk/* /var/lib/apt/lists/*
 
 ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
 
