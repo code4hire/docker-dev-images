@@ -78,7 +78,7 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install pgsql \
     && docker-php-ext-configure sockets \
     && docker-php-ext-install sockets \
-    && yes | pecl install xdebug-2.7.0RC2 imagick-3.4.3 igbinary-3.0.0 redis-4.2.0 \
+    && yes | pecl install xdebug-2.7.2 imagick-3.4.4 igbinary-3.0.1 redis-5.0.2 \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable igbinary redis \
