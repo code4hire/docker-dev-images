@@ -16,18 +16,7 @@ ENV PHPIZE_DEPS \
     re2c
 
 # https://pkgs.alpinelinux.org/packages?name=&branch=&repo=&arch=&maintainer=
-RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.3/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.4/main/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.4/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.5/main/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.5/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.6/main/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/v3.6/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/edge/main/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/edge/community/ >>/etc/apk/repositories \
-    && echo http://dl-4.alpinelinux.org/alpine/edge/testing/ >>/etc/apk/repositories \
-    && apk update \
+RUN apk update \
     && apk add --no-cache --virtual .build-deps \
             $PHPIZE_DEPS \
     && apk add git \
@@ -70,8 +59,7 @@ RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
             php5-pgsql \
             php5-pdo_pgsql \
             php5-sockets \
-            php5-xdebug \
-    && pecl install imagick-3.4.3 redis && docker-php-ext-enable redis \
+    && no | pecl install imagick-3.4.4 xdebug-2.5.5 redis-4.3.0 && docker-php-ext-enable redis \
     && rm -rf /var/cache/apk/* \
     # Install Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
