@@ -84,8 +84,8 @@ RUN docker-php-ext-configure gd \
     # Install Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     # Install Symfony installer
-    && curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony \
-    &&  chmod a+x /usr/local/bin/symfony \
+    &&  curl -sS https://get.symfony.com/cli/installer | bash \
+    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
     # create aliases
     && echo "alias php-debug='/usr/local/bin/php -dzend_extension=/usr/lib/php7/modules/xdebug.so'" >> ~/.bashrc \
     && echo "alias php-profiler='XDEBUG_CONFIG=\"profiler_enable=1\" /usr/local/bin/php -dzend_extension=/usr/lib/php7/modules/xdebug.so'" >> ~/.bashrc

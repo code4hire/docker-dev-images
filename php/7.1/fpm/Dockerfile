@@ -78,8 +78,8 @@ RUN echo http://dl-4.alpinelinux.org/alpine/v3.3/main/ >>/etc/apk/repositories \
     # Install Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     # Install Symfony installer
-    && curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony \
-    && chmod a+x /usr/local/bin/symfony
+    &&  curl -sS https://get.symfony.com/cli/installer | bash \
+    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
 
