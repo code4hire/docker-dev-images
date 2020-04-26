@@ -89,4 +89,4 @@ RUN mkdir -p /var/log/php-fpm
 
 EXPOSE 9000
 
-CMD ["php-fpm", "--allow-to-run-as-root", "--fpm-config", "/etc/php-fpm/php-fpm.conf"]
+#CMD ["php-fpm", "--allow-to-run-as-root", "--fpm-config", "/etc/php-fpm/php-fpm.conf"]
