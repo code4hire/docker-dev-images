@@ -101,3 +101,4 @@ RUN mkdir -p /var/log/xdebug/profiler_output
 EXPOSE 9000
 
 #CMD ["php-fpm", "--allow-to-run-as-root", "--fpm-config", "/etc/php-fpm/php-fpm.conf"]
+CMD ["php-fpm", "--allow-to-run-as-root"]
