@@ -80,7 +80,7 @@ RUN apk update \
     && apk del .build-deps $PHPIZE_DEPS \
     && rm -rf /var/cache/apk/* /var/lib/apt/lists/*
 
-ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
+#ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
 
 ADD ./php-fpm/ /usr/local/etc/php/conf.d/
 

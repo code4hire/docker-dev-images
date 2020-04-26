@@ -87,7 +87,7 @@ RUN docker-php-ext-configure gd \
     &&  curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
-ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
+#ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
 
 ADD ./php-fpm/ /usr/local/etc/php/conf.d/
 
