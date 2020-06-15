@@ -76,7 +76,6 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install sockets \
     && yes | pecl install xdebug-2.9.0 imagick-3.4.4 \
     && no | pecl install redis-5.1.1 \
-    && docker-php-ext-enable xdebug \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable redis \
     && apk del .build-deps $PHPIZE_DEPS \
@@ -87,11 +86,10 @@ RUN docker-php-ext-configure gd \
     &&  curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
     # create aliases
-    && echo "alias php-debug='/usr/local/bin/php -dzend_extension=/usr/lib/php7/modules/xdebug.so'" >> ~/.bashrc \
-    && echo "alias php-profiler='XDEBUG_CONFIG=\"profiler_enable=1\" /usr/local/bin/php -dzend_extension=/usr/lib/php7/modules/xdebug.so'" >> ~/.bashrc
+    && echo "alias php-debug='/usr/local/bin/php -dzend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so'" >> ~/.bashrc \
+    && echo "alias php-profiler='XDEBUG_CONFIG=\"profiler_enable=1\" /usr/local/bin/php -dzend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so'" >> ~/.bashrc
 
 ADD ./php-configuration/ /usr/local/etc/php/conf.d/
-ADD ./php-xdebug/xdebug.ini ./php-xdebug/xdebug-profiler.ini /usr/local/etc/php/conf.d/
 
 RUN mkdir -p /var/log/xdebug
 RUN mkdir -p /var/log/xdebug/profiler_output
