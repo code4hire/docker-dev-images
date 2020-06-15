@@ -87,16 +87,5 @@ RUN docker-php-ext-configure gd \
     && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 
-#ADD ./php-fpm/ /usr/local/etc/php/conf.d/
-
-#ADD ./php-xdebug/ /usr/local/etc/php/conf.d/
-
-#RUN mkdir -p /usr/share/php-fpm
-#RUN mkdir -p /var/log/php-fpm
 RUN mkdir -p /var/log/xdebug
 RUN mkdir -p /var/log/xdebug/profiler_output
-
-#EXPOSE 9000
-
-#CMD ["php-fpm", "--allow-to-run-as-root", "--fpm-config", "/etc/php-fpm/php-fpm.conf"]
-#CMD ["php-fpm", "--allow-to-run-as-root"]
