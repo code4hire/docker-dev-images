@@ -76,7 +76,6 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install sockets \
     && yes | pecl install xdebug-2.9.0 imagick-3.4.4 \
     && no | pecl install redis-5.1.1 \
-    && docker-php-ext-enable xdebug \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable redis \
     && apk del .build-deps $PHPIZE_DEPS \
@@ -87,18 +86,17 @@ RUN docker-php-ext-configure gd \
     &&  curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
-#ADD ./php-fpm.conf /etc/php-fpm/php-fpm.conf
 
-ADD ./php-fpm/ /usr/local/etc/php/conf.d/
+#ADD ./php-fpm/ /usr/local/etc/php/conf.d/
 
-ADD ./php-xdebug/ /usr/local/etc/php/conf.d/
+#ADD ./php-xdebug/ /usr/local/etc/php/conf.d/
 
-RUN mkdir -p /usr/share/php-fpm
-RUN mkdir -p /var/log/php-fpm
+#RUN mkdir -p /usr/share/php-fpm
+#RUN mkdir -p /var/log/php-fpm
 RUN mkdir -p /var/log/xdebug
 RUN mkdir -p /var/log/xdebug/profiler_output
 
-EXPOSE 9000
+#EXPOSE 9000
 
 #CMD ["php-fpm", "--allow-to-run-as-root", "--fpm-config", "/etc/php-fpm/php-fpm.conf"]
-CMD ["php-fpm", "--allow-to-run-as-root"]
+#CMD ["php-fpm", "--allow-to-run-as-root"]
